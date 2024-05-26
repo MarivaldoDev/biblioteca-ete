@@ -3,7 +3,13 @@ from datetime import date
 
 # Create your models here.
 
-class Perfil(models.Model):
+
+class Administrador(models.Model):
+    usuario = models.CharField(max_length=20)
+    senha = models.CharField(max_length=8)
+
+
+class Usuario(models.Model):
     nome = models.CharField(max_length=100)
     matricula = models.CharField(max_length=7)
     curso = models.CharField(max_length=40)
@@ -34,4 +40,5 @@ class Livro(models.Model):
         on_delete=models.SET_NULL,
         blank=True, null=True
     )
-    quantidade = models.IntegerField()
+    data_emprestimo = models.DateField(blank=True, null=True)
+    data_devolucao = models.DateField(blank=True, null=True)

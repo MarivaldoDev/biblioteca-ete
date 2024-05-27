@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,12 @@
 <body>
     <h1>Crie o adm</h1>
     <form action="{% url 'criar' %}" method="POST">{% csrf_token %}
-        <input type="text" placeholder="Usuário" name="usuario">
+    {% for field in form %}
+        <label>{{ field.label }}</label>
+        {{ field }}
         <br>
-        <input type="text" placeholder="Senha" name="senha">
-        <br>
-        <button type="submit">Criar</button>
+    {% endfor %}
+    <button type="submit">Criar</button>
     </form>
 </body>
 </html>

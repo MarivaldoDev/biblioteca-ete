@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Administrador
+from .forms import AdmForm
 
 # Create your views here.
 def first(request):
@@ -8,12 +9,19 @@ def first(request):
 
 def criar(request):
     if request.method == 'POST':
-        usuario = request.POST.get('usuario')
-        senha = request.POST.get('senha')
+        context = {
+            'form': AdmForm(request.POST)
+        }
+        # usuario = request.POST.get('usuario')
+        # senha = request.POST.get('senha')
         
-        adm = Administrador(usuario=usuario, senha=senha) 
-        adm.save()
+        # adm = Administrador(usuario=usuario, senha=senha) 
+        # adm.save()
 
-        return redirect('/')
+        return render(request, 'criar_adm.html', context)
+    
+    context = {
+        'form': AdmForm()
+    }
 
-    return render(request, 'criar.html')
+    return render(request, 'criar_adm.html', context)

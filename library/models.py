@@ -15,7 +15,7 @@ class Usuario(models.Model):
     curso = models.CharField(max_length=40)
     turma = models.CharField(max_length=10)
     data_criacao = models.DateField(default=date.today().strftime('%d/%m/%Y'))
-    imagem = models.ImageField(blank=True, upload_to='imagens/')
+    imagem = models.ImageField(blank=True, upload_to='imagem_cadastro/%Y/%m/')
 
     def __str__(self) -> str:
         return f'{self.nome}'

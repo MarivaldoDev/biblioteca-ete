@@ -4,7 +4,7 @@ from .forms import UserForm
 
 # Create your views here.
 def first(request):
-    return render(request, 'first.html')
+    return render(request, 'index.html')
 
 
 def criar_usuario(request):
@@ -19,10 +19,10 @@ def criar_usuario(request):
             form.save()
             return redirect('criar_usuario')
     
-        return render(request, 'usuario.html', context)
+        return render(request, 'pag1.html', context)
     
     context = {
         'form': UserForm()
     }
 
-    return render(request, 'usuario.html', context)
+    return render(request, 'pag1.html', context)

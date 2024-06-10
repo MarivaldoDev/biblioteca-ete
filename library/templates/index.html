@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'global/css/index.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="nav-1">
+            <ul>
+                <img src="{% static 'global/images/logo2ete.jpg' %}" alt="" width="30px">
+                <li>Sobre</li>
+            </ul>
+        </nav>
+        <nav class="profile">
+            <p>Perfil</p>
+        </nav>
+    </header>
+    <aside>
+        <div class="menu-space">
+            <p>Escaneie</p>
+            <p>Desenvolvedores</p>
+            <p>Usuários cadastrados</p>
+            <p>Redes sociais</p>
+        </div>
+    </aside>
+    <main>
+        <div class="text-space">
+            <h1>Faça seu Cadastro</h1>
+            <h3>Venha adquirir seu livro na biblioteca e entre no mundo do conhecimento</h3>
+            <button><a href="{% url 'criar_usuario' %}">Cadastrar-se</a></button>
+        </div>
+    </main>
+    <footer>
+        <h3>Todos os direitos reservados - 2024</h3>
+    </footer>
+</body>
+</html>

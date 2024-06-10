@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'global/css/pag1.css' %}">
+
+</head>
+<body>
+    <header>
+        <nav class="nav-main">
+            <img src="{% static 'global/images/logo2ete.jpg' %}" alt="" width="30px">
+        </nav>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="{% url 'first' %}">Voltar</a></li>
+                <li><button onclick="limpar()">Limpar</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="form">
+            <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}>
+                {% for field in form %}
+                    {% if field.name == 'turma' %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <select id="turma" name="turma" multiple size="1">
+                            <option value="1loga">1loga</option>
+                            <option value="1logb">1logb</option>
+                            <option value="2loga">2loga</option>
+                            <option value="2logb">2logb</option>
+                            <option value="3loga">3loga</option>
+                            <option value="3logb">3logb</option>
+                            <option value="1tdsa">1tdsa</option>
+                            <option value="1tdsb">1tdsb</option>
+                            <option value="2tdsa">2tdsa</option>
+                            <option value="2tdsb">2tdsb</option>
+                            <option value="3tdsa">3tdsa</option>
+                            <option value="3tdsb">3tdsb</option>  
+                        </select>
+                    {% else %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+                <input type="submit" class="submit">
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>todos os direitos reservados</p>
+    </footer>
+    <script src="{% static 'global/js/script.js' %}"></script>
+</body>
+</html>

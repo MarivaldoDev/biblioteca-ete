@@ -12,6 +12,8 @@ class UserForm(forms.ModelForm):
         )
 
         widgets = {
+            'nome': forms.TextInput(attrs={'placeholder': 'Seu nome'}),
+            'matricula': forms.TextInput(attrs={'placeholder': 'Sua matricula'}),
             'data_criacao': forms.DateInput(attrs={'type': 'date'}),
             'imagem': forms.FileInput(attrs={'class': 'file'}),
         }

@@ -26,3 +26,14 @@ def criar_usuario(request):
     }
 
     return render(request, 'pag1.html', context)
+
+
+def listar(request):
+    usuarios = Usuario.objects.all()
+    print(usuarios)
+
+    context = {
+        'usuarios': usuarios
+    }
+
+    return render(request, 'listar.html', context)

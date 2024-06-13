@@ -22,7 +22,7 @@
     </header>
     <main>
         <div class="form">
-            <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}>
+            <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 {% for field in form %}
                     {% if field.name == 'turma' %}
                         <label for="{{ field.id_for_label }}">{{ field.label }}</label>

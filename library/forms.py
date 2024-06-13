@@ -12,10 +12,11 @@ class UserForm(forms.ModelForm):
         )
 
         widgets = {
-            'nome': forms.TextInput(attrs={'placeholder': 'Seu nome'}),
-            'matricula': forms.TextInput(attrs={'placeholder': 'Sua matricula'}),
-            'data_criacao': forms.DateInput(attrs={'type': 'date'}),
-            'imagem': forms.FileInput(attrs={'class': 'file'}),
+            'nome': forms.TextInput(attrs={'placeholder': 'Seu nome', 'id': 'input'}),
+            'matricula': forms.TextInput(attrs={'placeholder': 'Sua matricula', 'id': 'input2'}),
+            'curso': forms.TextInput(attrs={'placeholder': 'Seu curso', 'id': 'input3'}),
+            'data_criacao': forms.DateInput(attrs={'type': 'date', 'id': 'input4'}),
+            'imagem': forms.FileInput(attrs={'class': 'file', 'placeholder': 'Adicione uma imagem', 'id': 'input5'}),
         }
 
     # def clean(self):

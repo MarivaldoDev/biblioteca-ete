@@ -6,13 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    {% for usuario in usuarios %}
-        <h1>{{ usuario.id }}</h1>
-        <h1>{{ usuario.nome }}</h1>
-        <h1>{{ usuario.matricula }}</h1>
-        <h1>{{ usuario.curso }}</h1>
-        <h1>{{ usuario.turma }}</h1>
-        <br><br>
-    {% endfor %}
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Matricula</th>
+            <th>Curso</th>
+            <th>Turma</th>
+        </tr>
+        {% for usuario in usuarios %}
+            <tr>
+                <th>{{ usuario.id }}</th>
+                <th>{{ usuario.nome }}</th>
+                <th>{{ usuario.matricula }}</th>
+                <th>{{ usuario.curso }}</th>
+                <th>{{ usuario.turma }}</th>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

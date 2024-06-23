@@ -1,11 +1,11 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Administrador, Usuario
+from .models import Administrator, User
 
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = Usuario
+        model = User
         fields = (
             'nome', 'matricula', 'curso', 'turma',
             'data_criacao', 'imagem'
@@ -33,5 +33,5 @@ class UserForm(forms.ModelForm):
 
 class AdmForm(forms.ModelForm):
     class Meta:
-        model = Administrador
+        model = Administrator
         fields = ('usuario', 'senha')

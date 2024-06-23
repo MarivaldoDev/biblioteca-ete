@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
             <th>Matricula</th>
             <th>Curso</th>
             <th>Turma</th>
+            <th>Imagem</th>
         </tr>
         {% for usuario in usuarios %}
             <tr>
@@ -21,6 +23,11 @@
                 <th>{{ usuario.matricula }}</th>
                 <th>{{ usuario.curso }}</th>
                 <th>{{ usuario.turma }}</th>
+                {% if usuario.imagem %}
+                    <th><a href="{{ usuario.imagem.url }}">{{ usuario.nome }}_image</a></th>
+                {% else %}
+                    <th>Sem imagem</th>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>

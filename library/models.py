@@ -37,4 +37,7 @@ class Emprestimo(models.Model):
 
     @property
     def fim_emprestimo(self):
-        return self.data_devolucao <= timezone.now()
+        return self.data_devolucao <= timezone.now().date()
+    
+    def __str__(self) -> str:
+        return f'Empréstimo - {self.portador}'

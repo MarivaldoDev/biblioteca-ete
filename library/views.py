@@ -1,5 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Administrator, User
+from .models import Administrator, User, Emprestimo
 from .forms import UserForm
 
 # Create your views here.
@@ -37,3 +38,14 @@ def listar(request):
     }
 
     return render(request, 'listar.html', context)
+
+
+def emprestimo(request):
+    emprestimos = Emprestimo.objects.all()
+
+    for emprestimo in emprestimos:
+        if emprestimo.fim_emprestimo:
+            print(f"Chegou a hora de devolver o livro: {emprestimo.livro}")
+        else:     
+            print(f'Pode usar o livro tranquilamente, você ainda tem: {emprestimo.data_devolucao - emprestimo.data_emprestimo} dias')
+    return HttpResponse('estou no emprestimo')

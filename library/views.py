@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.utils import timezone
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
 from .forms import UserForm
@@ -44,8 +45,9 @@ def emprestimo(request):
     emprestimos = Emprestimo.objects.all()
 
     for emprestimo in emprestimos:
+        prazo = emprestimo.data_devolucao - timezone.now().date()
         if emprestimo.fim_emprestimo:
             print(f"Chegou a hora de devolver o livro: {emprestimo.livro}")
         else:     
-            print(f'Pode usar o livro tranquilamente, você ainda tem: {emprestimo.data_devolucao - emprestimo.data_emprestimo} dias')
+            print(f'Pode usar o livro tranquilamente, você ainda tem: {prazo} dias')
     return HttpResponse('estou no emprestimo')

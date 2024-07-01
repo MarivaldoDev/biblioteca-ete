@@ -50,7 +50,7 @@ def emprestimo(request):
         if emprestimo.fim_emprestimo:
             send_mail(
                 subject='Hora de devolver!', 
-                message=f'Olá {emprestimo.portador}, você precisa devolver ou renovar o empréstimo do livo {emprestimo.livro} à biblioteca.',
+                message=f'Olá {emprestimo.portador}, você precisa devolver ou renovar o empréstimo do livro {emprestimo.livro} à biblioteca.',
                 from_email='testesdepython2@gmail.com',
                 recipient_list=[emprestimo.email]
             )

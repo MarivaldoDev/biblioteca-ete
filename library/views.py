@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.utils import timezone
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
 from .forms import UserForm
@@ -45,9 +46,15 @@ def emprestimo(request):
     emprestimos = Emprestimo.objects.all()
 
     for emprestimo in emprestimos:
-        prazo = emprestimo.data_devolucao - timezone.now().date()
+        prazo = str(emprestimo.data_devolucao - timezone.now().date())
         if emprestimo.fim_emprestimo:
-            print(f"Chegou a hora de devolver o livro: {emprestimo.livro}")
+            send_mail(
+                subject='Hora de devolver!', 
+                message=f'Olá {emprestimo.portador}, você precisa devolver ou renovar o empréstimo do livo {emprestimo.livro} à biblioteca.',
+                from_email='testesdepython2@gmail.com',
+                recipient_list=[emprestimo.email]
+            )
+            print('foi cobrado')
         else:     
-            print(f'Pode usar o livro tranquilamente, você ainda tem: {prazo} dias')
+            print(f'Pode usar o livro tranquilamente, você ainda tem: {prazo[0]} dias')
     return HttpResponse('estou no emprestimo')

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
+    <title>Emprestimos</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Portador</th>
+            <th>E-mail</th>
+            <th>Livro</th>
+            <th>Categoria</th>
+            <th>Data do empréstimo</th>
+            <th>Data da devolução</th>
+            <th>Prazo</th>
+        </tr>
+        {% for emprestimo in emprestimos %}
+            <tr>
+                <th>{{ emprestimo.portador }}</th>
+                <th>{{ emprestimo.email }}</th>
+                <th>{{ emprestimo.livro }}</th>
+                <th>{{ emprestimo.categoria }}</th>
+                <th>{{ emprestimo.data_emprestimo }}</th>
+                <th>{{ emprestimo.data_devolucao }}</th>
+                {% with prazo=emprestimo.calcular_prazo %}
+                    {% if prazo >= 0 %}
+                        <th>{{ prazo }} dias</th>
+                    {% else %}
+                        <th>Prazo expirado</th>
+                    {% endif %}
+                {% endwith %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

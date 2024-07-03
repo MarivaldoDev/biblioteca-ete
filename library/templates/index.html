@@ -22,9 +22,16 @@
     </header>
     <aside>
         <div class="menu-space">
-            <p>Escaneie</p>
+            <a href="{% url 'emprestimos' %}">
+                <p>Empréstimos</p>
+            </a>
+            
             <p>Desenvolvedores</p>
-            <p>Usuários cadastrados</p>
+            
+            <a href="{% url 'listar_usuarios' %}">
+                <p>Usuários cadastrados</p>
+            </a>
+            
             <p>Redes sociais</p>
         </div>
     </aside>

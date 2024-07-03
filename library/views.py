@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
 from .forms import UserForm
+from datetime import date
 
 # Create your views here.
 def first(request):
@@ -39,14 +40,13 @@ def listar(request):
         'usuarios': usuarios
     }
 
-    return render(request, 'listar.html', context)
+    return render(request, 'listar_cadastros.html', context)
 
 
 def emprestimo(request):
     emprestimos = Emprestimo.objects.all()
 
     for emprestimo in emprestimos:
-        prazo = str(emprestimo.data_devolucao - timezone.now().date())
         if emprestimo.fim_emprestimo:
             send_mail(
                 subject='Hora de devolver!', 
@@ -54,7 +54,4 @@ def emprestimo(request):
                 from_email='testesdepython2@gmail.com',
                 recipient_list=[emprestimo.email]
             )
-            print('foi cobrado')
-        else:     
-            print(f'Pode usar o livro tranquilamente, você ainda tem: {prazo[0]} dias')
-    return HttpResponse('estou no emprestimo')
+    return render(request, 'emprestimos.html', context={'emprestimos': emprestimos})

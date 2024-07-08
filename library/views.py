@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.utils import timezone
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
@@ -23,13 +22,13 @@ def criar_usuario(request):
             form.save()
             return redirect('criar_usuario')
     
-        return render(request, 'pag1.html', context)
+        return render(request, 'cadastrar.html', context)
     
     context = {
         'form': UserForm()
     }
 
-    return render(request, 'pag1.html', context)
+    return render(request, 'cadastrar.html', context)
 
 
 def listar(request):
@@ -47,11 +46,13 @@ def emprestimo(request):
     emprestimos = Emprestimo.objects.all()
 
     for emprestimo in emprestimos:
+        contato = Emprestimo.objects.get(id=emprestimo.id)
         if emprestimo.fim_emprestimo:
             send_mail(
                 subject='Hora de devolver!', 
-                message=f'Olá {emprestimo.portador}, você precisa devolver ou renovar o empréstimo do livro {emprestimo.livro} à biblioteca.',
+                message=f'Olá {emprestimo.portador}!\nVocê precisa devolver ou renovar o empréstimo do livro "{emprestimo.livro.upper()}" à biblioteca.',            
                 from_email='testesdepython2@gmail.com',
-                recipient_list=[emprestimo.email]
+                recipient_list=[contato.portador.email]
             )
+    
     return render(request, 'emprestimos.html', context={'emprestimos': emprestimos})

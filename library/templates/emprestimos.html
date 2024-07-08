@@ -11,7 +11,6 @@
     <table border="1">
         <tr>
             <th>Portador</th>
-            <th>E-mail</th>
             <th>Livro</th>
             <th>Categoria</th>
             <th>Data do empréstimo</th>
@@ -21,13 +20,12 @@
         {% for emprestimo in emprestimos %}
             <tr>
                 <th>{{ emprestimo.portador }}</th>
-                <th>{{ emprestimo.email }}</th>
                 <th>{{ emprestimo.livro }}</th>
                 <th>{{ emprestimo.categoria }}</th>
                 <th>{{ emprestimo.data_emprestimo }}</th>
                 <th>{{ emprestimo.data_devolucao }}</th>
                 {% with prazo=emprestimo.calcular_prazo %}
-                    {% if prazo >= 0 %}
+                    {% if prazo > 0 %}
                         <th>{{ prazo }} dias</th>
                     {% else %}
                         <th>Prazo expirado</th>

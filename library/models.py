@@ -21,8 +21,9 @@ class User(models.Model):
     nome = models.CharField(max_length=100)
     matricula = models.CharField(max_length=7)
     curso = models.CharField(max_length=40)
+    email = models.EmailField(max_length=150)
     turma = models.CharField(max_length=10)
-    data_criacao = models.DateField(default=date.today().strftime('%d/%m/%Y'))
+    data_criacao = models.DateField(default=date.today)
     imagem = models.ImageField(blank=True, upload_to='imagem_cadastro/%Y/%m/')
 
     def __str__(self) -> str:
@@ -31,7 +32,6 @@ class User(models.Model):
 
 class Emprestimo(models.Model):
     portador = models.ForeignKey(User, on_delete=models.CASCADE)
-    email = models.EmailField(max_length=150)
     livro = models.CharField(max_length=100)
     categoria = models.CharField(max_length=50, blank=True)
     data_emprestimo = models.DateField(default=date.today().strftime('%d/%m/%Y'))

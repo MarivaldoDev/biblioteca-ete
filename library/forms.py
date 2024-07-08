@@ -7,15 +7,15 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'nome', 'matricula', 'curso', 'turma',
-            'data_criacao', 'imagem'
+            'nome', 'matricula', 'curso', 'email',
+            'turma', 'imagem'
         )
 
         widgets = {
             'nome': forms.TextInput(attrs={'placeholder': 'Seu nome', 'id': 'input'}),
             'matricula': forms.TextInput(attrs={'placeholder': 'Sua matricula', 'id': 'input2'}),
             'curso': forms.TextInput(attrs={'placeholder': 'Seu curso', 'id': 'input3'}),
-            'data_criacao': forms.DateInput(attrs={'type': 'date', 'id': 'input4'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Seu E-mail', 'id': 'input4'}),
             'imagem': forms.FileInput(attrs={'class': 'file', 'placeholder': 'Adicione uma imagem', 'id': 'input5'}),
         }
 

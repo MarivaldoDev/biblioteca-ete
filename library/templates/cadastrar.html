@@ -6,52 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se!</title>
     <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'global/css/pag1.css' %}">
-
+    <link rel="stylesheet" href="{% static 'global/css/cadastrar.css' %}">
 </head>
 <body>
     <header>
         <nav class="nav-main">
-            <img src="{% static 'global/images/logo2ete.jpg' %}" alt="" width="30px">
+            <img src="{% static 'global/images/ete-logo1.jpg' %}" class="logo" alt="Logo" width="30px">
         </nav>
         <nav>
             <ul class="main-menu">
                 <li><a href="{% url 'first' %}">Voltar</a></li>
-                <li><button onclick="limpar()">Limpar</button></li>
+                <li><button type="button" onclick="limpar()">Limpar</button></li>
             </ul>
         </nav>
     </header>
     <main>
-        <div class="form">
+        <div class="form-container">
             <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 {% for field in form %}
-                    {% if field.name == 'turma' %}
+                    <div class="form-group">
                         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        <select id="turma" name="turma" multiple size="1">
-                            <option value="1loga">1° LOG A</option>
-                            <option value="1logb">1° LOG B</option>
-                            <option value="2loga">2° LOG A</option>
-                            <option value="2logb">2° LOG B</option>
-                            <option value="3loga">3° LOG A</option>
-                            <option value="3logb">3° LOG B</option>
-                            <option value="1tdsa">1° TDS A</option>
-                            <option value="1tdsb">1° TDS B</option>
-                            <option value="2tdsa">2° TDS A</option>
-                            <option value="2tdsb">2° TDS B</option>
-                            <option value="3tdsa">3° TDS A</option>
-                            <option value="3tdsb">3° TDS B</option>  
-                        </select>
-                    {% else %}
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        {{ field }}
-                    {% endif %}
+                        {% if field.name == 'turma' %}
+                            <select id="turma" name="turma" multiple size="1">
+                                <option value="1loga">1° LOG A</option>
+                                <option value="1logb">1° LOG B</option>
+                                <option value="2loga">2° LOG A</option>
+                                <option value="2logb">2° LOG B</option>
+                                <option value="3loga">3° LOG A</option>
+                                <option value="3logb">3° LOG B</option>
+                                <option value="1tdsa">1° TDS A</option>
+                                <option value="1tdsb">1° TDS B</option>
+                                <option value="2tdsa">2° TDS A</option>
+                                <option value="2tdsb">2° TDS B</option>
+                                <option value="3tdsa">3° TDS A</option>
+                                <option value="3tdsb">3° TDS B</option>  
+                            </select>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    </div>
                 {% endfor %}
-                <input type="submit" class="submit">
+                <button type="submit" class="submit">Cadastrar</button>
             </form>
         </div>
     </main>
     <footer>
-        <p>todos os direitos reservados</p>
+        <p>Todos os direitos reservados</p>
     </footer>
     <script src="{% static 'global/js/script.js' %}"></script>
 </body>

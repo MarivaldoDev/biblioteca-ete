@@ -6,33 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários Cadastrados</title>
     <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'global/css/listar_cadastros.css' %}">
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Matricula</th>
-            <th>Curso</th>
-            <th>E-mail</th>
-            <th>Turma</th>
-            <th>Imagem</th>
-        </tr>
-        {% for usuario in usuarios %}
-            <tr>
-                <th>{{ usuario.id }}</th>
-                <th>{{ usuario.nome }}</th>
-                <th>{{ usuario.matricula }}</th>
-                <th>{{ usuario.curso }}</th>
-                <th>{{ usuario.email }}</th>
-                <th>{{ usuario.turma }}</th>
-                {% if usuario.imagem %}
-                    <th><a href="{{ usuario.imagem.url }}">{{ usuario.nome }}_image</a></th>
-                {% else %}
-                    <th>Sem imagem</th>
-                {% endif %}
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="user-management">
+        <header>
+            <h1>Usuários da Biblioteca</h1>
+            <form action="{% url 'search' %}" method="get">
+                <input type="search" placeholder="Buscar usuários..." name="q" value="{{ request.GET.q.strip }}">
+            </form>
+        </header>
+        
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Matricula</th>
+                    <th>Curso</th>
+                    <th>Turma</th>
+                    <th>Email</th>
+                    <th>Data de Cadastro</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    {% if usuario %}
+                        <tr>
+                            {% if usuario.imagem %}
+                                <th><img src="{{ usuario.imagem.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo"></th>
+                            {% else %}
+                                <th>Sem imagem</th>
+                            {% endif %}
+                            <td>{{ usuario.nome }}</td>
+                            <td>{{ usuario.matricula }}</td>
+                            <td>{{ usuario.curso }}</td>
+                            <td>{{ usuario.turma }}</td>
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.data_criacao|date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>
+                                <button class="btn-view">Ver</button>
+                                <button class="btn-edit">Editar</button>
+                                <button class="btn-delete">Excluir</button>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <h1>NENHUM USUÁRIO ENCONTRADO</h1>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <nav class="pagination">
+            <!-- Paginação -->
+        </nav>
+    </div>
 </body>
 </html>

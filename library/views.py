@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
 from .forms import UserForm
@@ -34,6 +35,27 @@ def criar_usuario(request):
 def listar(request):
     usuarios = User.objects.all()
     # print(usuarios)
+
+    context = {
+        'usuarios': usuarios
+    }
+
+    return render(request, 'listar_cadastros.html', context)
+
+
+def search(request):
+    search_value = request.GET.get('q', '').strip()
+    print(search_value)
+
+    if search_value == '':
+        return redirect('listar_usuarios')
+
+    usuarios = User.objects.filter(
+        Q(nome__icontains=search_value) |
+        Q(matricula__icontains=search_value) |
+        Q(turma__icontains=search_value) |
+        Q(email__icontains=search_value)
+    )
 
     context = {
         'usuarios': usuarios

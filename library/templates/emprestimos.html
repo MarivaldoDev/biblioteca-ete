@@ -5,34 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'global/css/emprestimos.css' %}">
     <title>Emprestimos</title>
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <th>Portador</th>
-            <th>Livro</th>
-            <th>Categoria</th>
-            <th>Data do empréstimo</th>
-            <th>Data da devolução</th>
-            <th>Prazo</th>
-        </tr>
-        {% for emprestimo in emprestimos %}
+    <div class="loan-management">
+    <header>
+        <h1>Empréstimos de Livros</h1>
+        <input type="search" placeholder="Buscar empréstimos...">
+    </header>
+    
+    <table class="loan-table">
+        <thead>
             <tr>
-                <th>{{ emprestimo.portador }}</th>
-                <th>{{ emprestimo.livro }}</th>
-                <th>{{ emprestimo.categoria }}</th>
-                <th>{{ emprestimo.data_emprestimo }}</th>
-                <th>{{ emprestimo.data_devolucao }}</th>
-                {% with prazo=emprestimo.calcular_prazo %}
-                    {% if prazo > 0 %}
-                        <th>{{ prazo }} dias</th>
-                    {% else %}
-                        <th>Prazo expirado</th>
-                    {% endif %}
-                {% endwith %}
+                <th>Portador</th>
+                <th>Livro</th>
+                <th>Categoria</th>
+                <th>Data do Empréstimo</th>
+                <th>Data de Devolução</th>
+                <th>Prazo (dias)</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+                <tr>
+                    <td>{{ emprestimo.portador }}</td>
+                    <td>{{ emprestimo.livro }}</td>
+                    <td>{{ emprestimo.categoria }}</td>
+                    <td>{{ emprestimo.data_emprestimo|date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ emprestimo.data_devolucao|date:"SHORT_DATE_FORMAT" }}</td>
+                    {% with prazo=emprestimo.calcular_prazo %}
+                        {% if prazo > 0 %}
+                        <th>{{ prazo }} dias</th>
+                        {% else %}
+                            <th>Prazo expirado</th>
+                        {% endif %}
+                    {% endwith %}
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
+    
+    <nav class="pagination">
+        <!-- Paginação -->
+    </nav>
+</div>
+
 </body>
 </html>

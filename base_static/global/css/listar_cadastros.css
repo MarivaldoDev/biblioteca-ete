@@ -1,0 +1,127 @@
+.user-management {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-management header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-management h1 {
+    font-size: 24px;
+    color: #0D47A1; /* Azul mais escuro para o título */
+}
+
+.user-management input[type="search"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 2px solid #FFC107; /* Borda amarelo forte */
+    border-radius: 5px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.user-table th, .user-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.user-table th {
+    background-color: #0D47A1; /* Cabeçalho azul mais escuro */
+    color: white; /* Texto branco */
+}
+
+.user-table th, .user-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; /* Alinhamento vertical */
+}
+
+.user-table th:first-child, .user-table td:first-child {
+    width: 80px;
+    text-align: center; /* Centraliza a imagem na célula */
+}
+
+.user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Faz a foto ficar redonda */
+    object-fit: cover; /* Garante que a imagem se ajuste ao tamanho sem distorcer */
+    border: 2px solid #ddd; /* Opcional: adicione uma borda */
+}
+
+
+.user-table tr:nth-child(even) {
+    background-color: #ffd861; /* Fundo amarelo forte para linhas pares */
+}
+
+.user-table tr:hover {
+    background-color: #FFD54F; /* Fundo amarelo mais claro ao passar o mouse */
+}
+
+.user-table td {
+    color: #333;
+}
+
+.user-table .highlight {
+    color: #d32f2f; /* Destaque em vermelho, se necessário */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #0D47A1; /* Botões de paginação azul mais escuro */
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #FFC107; /* Botões de paginação ficam amarelo forte ao passar o mouse */
+}
+
+/* Estilo dos botões de ação */
+.user-table .btn-view, .user-table .btn-edit, .user-table .btn-delete {
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.user-table .btn-view {
+    background-color: #3d9140;
+    color: white;
+}
+
+.user-table .btn-edit {
+    background-color: rgb(71, 174, 209);
+    color: white;
+}
+
+.user-table .btn-delete {
+    background-color: #F44336;
+    color: white;
+}

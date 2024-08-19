@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Administrator, User
+from .models import Administrator, User, Emprestimo
 
 
 class UserForm(forms.ModelForm):
@@ -30,6 +30,23 @@ class UserForm(forms.ModelForm):
     #     )
 
     #     return super().clean()
+
+
+class EmpreForm(forms.ModelForm):
+    class Meta:
+        model = Emprestimo
+        fields = (
+            'portador', 'livro', 'categoria', 'data_emprestimo', 'data_devolucao'
+        )
+
+        widgets = {
+            'portador': forms.TextInput(attrs={'placeholder': 'Nome do usuário...'}),
+            'livro': forms.TextInput(attrs={'placeholder': 'Seu livro...'}),
+            'categoria': forms.TextInput(attrs={'placeholder': 'Categoria do livro...'}),
+            'data_emprestimo': forms.DateInput(attrs={'type': 'date', 'value': '{{ default_devolucao_date }}'}),
+            'data_devolucao': forms.DateInput(attrs={'type': 'date', 'value': '{{ default_devolucao_date }}'}),
+        }
+
 
 class AdmForm(forms.ModelForm):
     class Meta:

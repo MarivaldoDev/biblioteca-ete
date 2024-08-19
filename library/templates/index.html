@@ -22,8 +22,8 @@
     </header>
     <aside>
         <div class="menu-space">
-            <a href="{% url 'emprestimos' %}">
-                <p>Empréstimos</p>
+            <a href="{% url 'listar_emprestimos' %}">
+                <p>Empréstimos ativos</p>
             </a>
             
             <p>Desenvolvedores</p>
@@ -32,7 +32,9 @@
                 <p>Usuários cadastrados</p>
             </a>
             
-            <p>Redes sociais</p>
+            <a href="{% url 'emprestimos' %}">
+                <p>Fazer empréstimo</p>
+            </a>
         </div>
     </aside>
     <main>

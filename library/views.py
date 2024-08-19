@@ -1,10 +1,9 @@
 from django.http import HttpResponse
-from django.core.mail import send_mail
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
-from .forms import UserForm
-from datetime import date
+from .forms import UserForm, EmpreForm
+
 
 # Create your views here.
 def first(request):
@@ -64,17 +63,26 @@ def search(request):
     return render(request, 'listar_cadastros.html', context)
 
 
-def emprestimo(request):
-    emprestimos = Emprestimo.objects.all()
+def emprestimos(request):
+    if request.method == 'POST':
+        form = EmpreForm(request.POST)
 
-    for emprestimo in emprestimos:
-        contato = Emprestimo.objects.get(id=emprestimo.id)
-        if emprestimo.fim_emprestimo:
-            send_mail(
-                subject='Hora de devolver!', 
-                message=f'Olá {emprestimo.portador}!\nVocê precisa devolver ou renovar o empréstimo do livro "{emprestimo.livro.upper()}" à biblioteca.',            
-                from_email='testesdepython2@gmail.com',
-                recipient_list=[contato.portador.email]
-            )
+        if form.is_valid():
+            form.save()
+            print('foi')
+            return redirect('emprestimos')
+        else:
+            print(form.errors)
+        
+        usuarios = User.objects.all()
+        
+        return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': form})
     
-    return render(request, 'emprestimos.html', context={'emprestimos': emprestimos})
+    usuarios = User.objects.all()
+    return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': EmpreForm()})
+
+
+def listar_emprestimo(request):
+    emprestimos = Emprestimo.objects.all()
+    
+    return render(request, 'listar_emprestimos.html', context={'emprestimos': emprestimos})

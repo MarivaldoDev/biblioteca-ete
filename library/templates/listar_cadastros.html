@@ -4,25 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuários Cadastrados</title>
+    <title>Ver Empréstimos</title>
     <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'global/css/listar_cadastros.css' %}">
 </head>
 <body>
+    <header class="simple-header">
+        <a href="javascript:history.back()" class="back-button">Voltar</a>
+        <h1>Ver Empréstimos</h1>
+    </header>
+
     <div class="user-management">
-        <header>
-            <h1>Usuários da Biblioteca</h1>
+        <div class="search-container">
             <form action="{% url 'search' %}" method="get">
                 <input type="search" placeholder="Buscar usuários..." name="q" value="{{ request.GET.q.strip }}">
+                <button type="submit" class="search-button">Buscar</button>
             </form>
-        </header>
-        
+        </div>
+
         <table class="user-table">
             <thead>
                 <tr>
                     <th>Foto</th>
                     <th>Nome</th>
-                    <th>Matricula</th>
+                    <th>Matrícula</th>
                     <th>Curso</th>
                     <th>Turma</th>
                     <th>Email</th>
@@ -35,9 +40,9 @@
                     {% if usuario %}
                         <tr>
                             {% if usuario.imagem %}
-                                <th><img src="{{ usuario.imagem.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo"></th>
+                                <td><img src="{{ usuario.imagem.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo"></td>
                             {% else %}
-                                <th>Sem imagem</th>
+                                <td>Sem imagem</td>
                             {% endif %}
                             <td>{{ usuario.nome }}</td>
                             <td>{{ usuario.matricula }}</td>
@@ -52,7 +57,9 @@
                             </td>
                         </tr>
                     {% else %}
-                        <h1>NENHUM USUÁRIO ENCONTRADO</h1>
+                        <tr>
+                            <td colspan="8">Nenhum usuário encontrado</td>
+                        </tr>
                     {% endif %}
                 {% endfor %}
             </tbody>

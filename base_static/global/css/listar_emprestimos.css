@@ -1,85 +1,83 @@
-.loan-management {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
+body {
+    font-family: Arial, sans-serif;
+    background: url('/static/global/images/biblioteca.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-.loan-management header {
+.simple-header {
+    background-color: rgba(0, 86, 179, 0.9); /* Azul escuro com transparência */
+    padding: 15px;
+    color: #fff;
+    text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-.loan-management h1 {
-    font-size: 24px;
-    color: #0D47A1; /* Azul mais escuro para o título */
+.simple-header h1 {
+    margin: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.loan-management input[type="search"] {
-    padding: 10px;
+.back-button {
+    color: #fff;
+    text-decoration: none;
     font-size: 16px;
-    width: 300px;
-    border: 2px solid #FFC107; /* Borda amarelo forte */
-    border-radius: 5px;
+    background-color: #0056b3;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #004494;
+}
+
+.loan-management {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.search-container input[type="search"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 .loan-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    margin-bottom: 20px;
 }
 
 .loan-table th, .loan-table td {
-    padding: 15px;
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    vertical-align: middle;
 }
 
 .loan-table th {
-    background-color: #0D47A1; /* Cabeçalho azul mais escuro */
-    color: white; /* Texto branco */
-}
-
-.loan-table tr:nth-child(even) {
-    background-color: #FFC107; /* Fundo amarelo forte para linhas pares */
-}
-
-.loan-table tr:hover {
-    background-color: #FFD54F; /* Fundo amarelo mais claro ao passar o mouse */
+    background-color: #0056b3;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .loan-table td {
-    color: #333;
-}
-
-.loan-table .highlight {
-    color: #d32f2f; /* Destaque em vermelho para prazos excedidos, se necessário */
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.pagination a {
-    margin: 0 5px;
-    padding: 10px 15px;
-    background-color: #0D47A1; /* Botões de paginação azul mais escuro */
-    border: none;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.pagination a:hover {
-    background-color: #FFC107; /* Botões de paginação ficam amarelo forte ao passar o mouse */
-}
-ination a:hover {
-    background-color: #FFC107; /* Botões de paginação ficam amarelo forte ao passar o mouse */
+    background-color: #f9f9f9;
 }

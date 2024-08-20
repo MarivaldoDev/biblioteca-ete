@@ -1,127 +1,150 @@
-.user-management {
-    width: 100%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
+body {
+    font-family: Arial, sans-serif;
+    background: url('/static/global/images/biblioteca.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-.user-management header {
+.simple-header {
+    background-color: rgba(0, 86, 179, 0.9); /* Azul escuro com transparência */
+    padding: 15px;
+    color: #fff;
+    text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
 }
 
-.user-management h1 {
-    font-size: 24px;
-    color: #0D47A1; /* Azul mais escuro para o título */
+.simple-header h1 {
+    margin: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.user-management input[type="search"] {
-    padding: 10px;
+.back-button {
+    color: #fff;
+    text-decoration: none;
     font-size: 16px;
-    width: 300px;
-    border: 2px solid #FFC107; /* Borda amarelo forte */
-    border-radius: 5px;
+    background-color: #0056b3;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #004494;
+}
+
+.user-management {
+    max-width: 1500px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.search-container form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search-container input[type="search"] {
+    padding: 8px;
+    color: #e0a800;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.search-button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #004494;
 }
 
 .user-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    margin-bottom: 20px;
 }
 
 .user-table th, .user-table td {
-    padding: 15px;
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    vertical-align: middle;
 }
 
 .user-table th {
-    background-color: #0D47A1; /* Cabeçalho azul mais escuro */
-    color: white; /* Texto branco */
-}
-
-.user-table th, .user-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    vertical-align: middle; /* Alinhamento vertical */
-}
-
-.user-table th:first-child, .user-table td:first-child {
-    width: 80px;
-    text-align: center; /* Centraliza a imagem na célula */
-}
-
-.user-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%; /* Faz a foto ficar redonda */
-    object-fit: cover; /* Garante que a imagem se ajuste ao tamanho sem distorcer */
-    border: 2px solid #ddd; /* Opcional: adicione uma borda */
-}
-
-
-.user-table tr:nth-child(even) {
-    background-color: #ffd861; /* Fundo amarelo forte para linhas pares */
-}
-
-.user-table tr:hover {
-    background-color: #FFD54F; /* Fundo amarelo mais claro ao passar o mouse */
+    background-color: #0056b3;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .user-table td {
+    background-color: #f9f9f9;
+}
+
+.user-photo {
+    width: 80px; /* Largura da imagem */
+    height: 80px; /* Altura da imagem */
+    border-radius: 50%; /* Transformar a imagem em círculo */
+    object-fit: cover; /* Garantir que a imagem preencha o espaço sem distorção */
+}
+
+.btn-view, .btn-edit, .btn-delete {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-view {
+    background-color: #28a745; /* Verde */
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #ffc107; /* Amarelo */
     color: #333;
 }
 
-.user-table .highlight {
-    color: #d32f2f; /* Destaque em vermelho, se necessário */
+.btn-delete {
+    background-color: #dc3545; /* Vermelho */
+    color: #fff;
 }
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+.btn-view:hover {
+    background-color: #218838;
 }
 
-.pagination a {
-    margin: 0 5px;
-    padding: 10px 15px;
-    background-color: #0D47A1; /* Botões de paginação azul mais escuro */
-    border: none;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+.btn-edit:hover {
+    background-color: #e0a800;
 }
 
-.pagination a:hover {
-    background-color: #FFC107; /* Botões de paginação ficam amarelo forte ao passar o mouse */
-}
-
-/* Estilo dos botões de ação */
-.user-table .btn-view, .user-table .btn-edit, .user-table .btn-delete {
-    padding: 5px 10px;
-    margin-right: 5px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-}
-
-.user-table .btn-view {
-    background-color: #3d9140;
-    color: white;
-}
-
-.user-table .btn-edit {
-    background-color: rgb(71, 174, 209);
-    color: white;
-}
-
-.user-table .btn-delete {
-    background-color: #F44336;
-    color: white;
+.btn-delete:hover {
+    background-color: #c82333;
 }

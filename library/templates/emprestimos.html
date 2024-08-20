@@ -31,7 +31,7 @@
                      {% if field.name == 'portador' %}
                          <select name="{{ field.name }}" id="{{ field.name }}">
                              {% for usuario in usuarios %}
-                                 <option value="{{ usuario.id }}">{{ usuario.nome}}</option>
+                                 <option value="{{ usuario.id }}">{{ usuario.nome }} - {{ usuario.turma }}</option>
                              {% endfor %}
                          </select>
                      {% else %}

@@ -44,7 +44,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(rgba(34, 33, 33, 0.75), rgba(31, 30, 30, 0.75)), url('/static/global/images/studybgd.jpg');
+    background: linear-gradient(rgba(34, 33, 33, 0.75), rgba(31, 30, 30, 0.75)), url('/static/global/images/image.png');
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -54,15 +54,15 @@ main {
 
 main h3 {
     color: #fff;
-    font-size: 10px;
-    margin-bottom: 40px;
+    font-size: 14px;
+    margin-top: 60px;
     padding: 10px;
     font-weight: bolder;
 }
 
 main h1 {
     color: #fff;
-    margin-bottom: 20px;
+    margin-top: 20px;
     font-weight: bolder;
 }
 
@@ -82,7 +82,7 @@ main h1 {
     padding: 50px;
     cursor: pointer;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 15px;
     color: #fff;
 }
 
@@ -109,7 +109,7 @@ main button {
     transition: 1s;
     cursor: pointer;
     font-size: 20px;
-
+    margin-top: 40px;
 }
 
 main button:hover {

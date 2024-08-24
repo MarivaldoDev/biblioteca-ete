@@ -1,28 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastre-se!</title>
     <link rel="shortcut icon" href="{% static 'global/images/pilha-de-livros.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'global/css/cadastrar.css' %}">
+    <title>Fazer cadastro</title>
 </head>
 <body>
-    <header>
-        <nav class="nav-main">
-            <img src="{% static 'global/images/ete-logo1.jpg' %}" class="logo" alt="Logo" width="30px">
-        </nav>
-        <nav>
-            <ul class="main-menu">
-                <li><a href="{% url 'first' %}">Voltar</a></li>
-                <li><button type="button" onclick="limpar()">Limpar</button></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="container">
+            <h1>Biblioteca</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'first' %}">Início</a></li>
+                    <li><a href="{% url 'listar_usuarios' %}">Ver cadastros</a></li>
+                    <li><a href="">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <div class="form-container">
-            <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+    <div class="container form-container">
+        <h2>Registro de Cadastro</h2>
+        <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
                         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -46,13 +48,8 @@
                         {% endif %}
                     </div>
                 {% endfor %}
-                <button type="submit" class="submit">Cadastrar</button>
+                <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
-        </div>
-    </main>
-    <footer>
-        <p>Todos os direitos reservados</p>
-    </footer>
-    <script src="{% static 'global/js/script.js' %}"></script>
+    </div>
 </body>
 </html>

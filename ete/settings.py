@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,6 +85,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+
+CELERY_BEAT_SCHEDULE = {
+    'checar-emprestimo-every-minute': {
+        'task': 'library.tasks.checar_emprestimo',
+        'schedule': crontab(hour=14, minute=2),  # Executa diariamente às 9h
+    },
 }
 
 

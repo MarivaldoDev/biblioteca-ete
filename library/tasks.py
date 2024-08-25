@@ -1,18 +1,9 @@
-import os
-import django
-from django.conf import settings
-from datetime import datetime
+from celery import shared_task
 from django.core.mail import send_mail
-from library.models import Emprestimo
+from .models import Emprestimo
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ete.settings')
-django.setup()
-
-if not settings.configured:
-    raise RuntimeError("As configurações do Django não foram carregadas corretamente.")
-
-
+@shared_task
 def checar_emprestimo():
     emprestimos = Emprestimo.objects.all()
 
@@ -29,6 +20,7 @@ def enviar_email(portador, livro, email):
         from_email='testesdepython2@gmail.com',
         recipient_list=[email]
     )
+
 
 if __name__ == "__main__":
     checar_emprestimo()

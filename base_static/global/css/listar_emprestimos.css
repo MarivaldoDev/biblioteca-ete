@@ -81,3 +81,7 @@ body {
 .loan-table td {
     background-color: #f9f9f9;
 }
+
+.expirado th{
+    color: red;
+}

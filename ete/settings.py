@@ -80,10 +80,15 @@ WSGI_APPLICATION = 'ete.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# filepath: /path/to/your/settings.py
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'biblioteca',
+        'USER': 'root',
+        'PASSWORD': '21790',
+        'HOST': 'localhost',
+        'PORT': '3306',  # geralmente 3306
     }
 }
 

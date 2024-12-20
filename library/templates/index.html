@@ -11,37 +11,28 @@
 <body>
     <header>
         <nav class="nav-1">
-            <ul>
-                <img src="{% static 'global/images/ete-logo1.jpg' %}" class="logo-img">
-            </ul>
+            <img src="{% static 'global/images/ete-logo1.jpg' %}" class="logo-img">
         </nav>
     </header>
     <aside>
-        <div class="menu-space">
-            <a href="{% url 'listar_emprestimos' %}">
-                <p>Empréstimos ativos</p>
-            </a>
-            
-            <p>Desenvolvedores</p>
-            
-            <a href="{% url 'listar_usuarios' %}">
-                <p>Usuários cadastrados</p>
-            </a>
-            
-            <a href="{% url 'emprestimos' %}">
-                <p>Fazer empréstimo</p>
-            </a>
-        </div>
+        <nav class="menu-space">
+            <ul>
+                <li><a href="{% url 'listar_emprestimos' %}">Empréstimos ativos</a></li>
+                <li><a href="#">Desenvolvedores</a></li>
+                <li><a href="{% url 'listar_usuarios' %}">Usuários cadastrados</a></li>
+                <li><a href="{% url 'emprestimos' %}">Fazer empréstimo</a></li>
+            </ul>
+        </nav>
     </aside>
     <main>
-        <div class="text-space">
+        <section class="text-space">
             <h1>Faça seu Cadastro</h1>
             <h3>Venha adquirir seu livro na biblioteca e entre no mundo do conhecimento!</h3>
             <button><a href="{% url 'criar_usuario' %}">Cadastrar-se</a></button>
-        </div>
+        </section>
     </main>
     <footer>
-        <h3>Todos os direitos reservados - 2024</h3>
+        <p>Todos os direitos reservados - 2024</p>
     </footer>
 </body>
 </html>

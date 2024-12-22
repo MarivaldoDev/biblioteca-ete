@@ -5,13 +5,14 @@ from .models import Emprestimo
 
 @shared_task
 def checar_emprestimo():
-    emprestimos = Emprestimo.objects.all()
+    # emprestimos = Emprestimo.objects.all()
 
-    for emprestimo in emprestimos:
-        if emprestimo.fim_emprestimo:
-            enviar_email(emprestimo.portador, emprestimo.livro, emprestimo.portador.email)
-            print('\033]1;33m E-mail enviado!\033[m')
-
+    # for emprestimo in emprestimos:
+    #     if emprestimo.fim_emprestimo:
+    #         enviar_email(emprestimo.portador, emprestimo.livro, emprestimo.portador.email)
+    #         print('\033]1;33m E-mail enviado!\033[m')
+    
+    return 'Tarefa concluída!'
 
 def enviar_email(portador, livro, email):
     send_mail(

@@ -89,9 +89,9 @@ DATABASES = {
 
 
 CELERY_BEAT_SCHEDULE = {
-    'checar-emprestimo-every-minute': {
+    'checar-emprestimo-every-day': {
         'task': 'library.tasks.checar_emprestimo',
-        'schedule': crontab(hour=14, minute=2),  # Executa diariamente às 9h
+        'schedule': crontab(hour=16, minute=39),  # Executa diariamente às 9h
     },
 }
 

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from decouple import config
 from celery.schedules import crontab
+from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,10 @@ SECRET_KEY = 'django-insecure-lw97dbu8=8x2uqsdc4nr%uyr!@xgopy-c@l!91_=0amlv&8e&-
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    'https://471e-2804-29b8-51a6-4541-295d-c666-f0f4-5d8c.ngrok-free.app',
+]
+
 
 
 # Application definition
@@ -158,3 +163,12 @@ else:
     EMAIL_USE_TLS = config('EMAIL_USE_TLS')
     EMAIL_HOST_USER = config('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'secondary',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger',
+}

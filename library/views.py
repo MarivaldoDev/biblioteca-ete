@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from .models import Administrator, User, Emprestimo
 from .forms import UserForm, EmpreForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -19,8 +20,18 @@ def criar_usuario(request):
         }
 
         if form.is_valid():
-            form.save()
-            return redirect('criar_usuario')
+            if User.objects.filter(matricula=form.cleaned_data['matricula']).exists():
+                messages.error(request, 'Já existe um usuário com essa matrícula!')
+                return render(request, 'cadastrar.html', context)
+            
+            elif User.objects.filter(email=form.cleaned_data['email']).exists():
+                messages.error(request, 'Já existe um usuário com esse email!')
+                return render(request, 'cadastrar.html', context)
+            
+            else:
+                form.save()
+                messages.success(request, f'Usuário {form.cleaned_data['nome']} cadastrado com sucesso!')
+                return redirect('first')
     
         return render(request, 'cadastrar.html', context)
     

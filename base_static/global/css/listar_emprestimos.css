@@ -56,14 +56,36 @@ body {
     text-align: right;
 }
 
+.search-container form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .search-container input[type="search"] {
     padding: 10px;
+    color: #e0a800;
     border: 2px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
     margin-right: 10px;
     width: 100%;
     max-width: 400px;
+}
+
+.search-button {
+    background-color: #004494;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #002d73;
 }
 
 .loan-table {

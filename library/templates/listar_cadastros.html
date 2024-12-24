@@ -18,6 +18,7 @@
         <div class="search-container">
             <form action="{% url 'search' %}" method="get">
                 <input type="search" placeholder="Buscar usuários..." name="q" value="{{ request.GET.q.strip }}">
+                <input type="hidden" name="type" value="usuarios">
                 <button type="submit" class="search-button">Buscar</button>
             </form>
         </div>

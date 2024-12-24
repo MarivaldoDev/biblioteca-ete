@@ -16,7 +16,11 @@
 
     <div class="loan-management">
         <div class="search-container">
-            <input type="search" placeholder="Buscar empréstimos..." name="q">
+        <form action="{% url 'search' %}" method="get">
+            <input type="search" placeholder="Buscar empréstimos..." name="q" value="{{ request.GET.q.strip }}">
+            <input type="hidden" name="type" value="emprestimos">
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
         </div>
 
         <table class="loan-table">

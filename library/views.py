@@ -44,23 +44,42 @@ def listar(request):
 
 def search(request):
     search_value = request.GET.get('q', '').strip()
-    print(search_value)
+    search_type = request.GET.get('type', 'usuarios') 
 
     if search_value == '':
-        return redirect('listar_usuarios')
+        if search_type == 'usuarios':
+            return redirect('listar_usuarios')
+        elif search_type == 'emprestimos':
+            return redirect('listar_emprestimos')
 
-    usuarios = User.objects.filter(
-        Q(nome__icontains=search_value) |
-        Q(matricula__icontains=search_value) |
-        Q(turma__icontains=search_value) |
-        Q(email__icontains=search_value)
-    )
+    if search_type == 'usuarios':
+        results = User.objects.filter(
+            Q(nome__icontains=search_value) |
+            Q(matricula__icontains=search_value) |
+            Q(turma__icontains=search_value) |
+            Q(email__icontains=search_value)
+        )
+        template = 'listar_cadastros.html'
+        context_key = 'usuarios'
+
+    elif search_type == 'emprestimos':
+        results = Emprestimo.objects.filter(
+            Q(portador__nome__icontains=search_value) |
+            Q(livro__icontains=search_value) |
+            Q(categoria__icontains=search_value)
+        )
+        template = 'listar_emprestimos.html'
+        context_key = 'emprestimos'
+
+    else:
+        return HttpResponse("Tipo de busca inválido", status=400)
 
     context = {
-        'usuarios': usuarios
+        context_key: results
     }
 
-    return render(request, 'listar_cadastros.html', context)
+    return render(request, template, context)
+
 
 
 def emprestimos(request):

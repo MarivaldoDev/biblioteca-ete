@@ -1,11 +1,13 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Administrator, User, Emprestimo
+from .models import UserStandard, Emprestimo
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = UserStandard
         fields = (
             'nome', 'matricula', 'curso', 'email',
             'turma', 'imagem'
@@ -48,7 +50,12 @@ class EmpreForm(forms.ModelForm):
         }
 
 
-class AdmForm(forms.ModelForm):
+class RegisterForm(UserCreationForm):
     class Meta:
-        model = Administrator
-        fields = ('usuario', 'senha')
+        model = User
+        fields = ('username', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Nome do usuário...'}),
+            'password1': forms.PasswordInput(attrs={'placeholder': 'Senha...'}),
+            'password2': forms.PasswordInput(attrs={'placeholder': 'Confirme a senha...'}),
+        }

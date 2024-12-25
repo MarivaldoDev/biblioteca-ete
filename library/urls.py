@@ -11,4 +11,7 @@ urlpatterns = [
     path('search/emprestimos/', views.search, {'type': 'emprestimos'}, name='search_emprestimos'),
     path('emprestimos/', views.emprestimos, name='emprestimos'),
     path('listar_emprestimos/', views.listar_emprestimo, name='listar_emprestimos'),
+    path('user/create', views.register, name='register'),
+    path('user/login', views.login_view, name='login'),
+    path('user/logout', views.logout_view, name='logout'),
 ]

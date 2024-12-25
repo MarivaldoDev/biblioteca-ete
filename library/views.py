@@ -1,14 +1,35 @@
 from django.http import HttpResponse
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from .models import Administrator, User, Emprestimo
-from .forms import UserForm, EmpreForm
-from django.contrib import messages
+from .models import UserStandard, Emprestimo
+from .forms import UserForm, EmpreForm, RegisterForm
+from django.contrib import messages, auth
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
 def first(request):
     return render(request, 'index.html')
+
+
+def register(request):
+    form = RegisterForm()
+
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            nome = form.cleaned_data.get('username')
+            messages.success(request, f'{nome} registrado com sucesso!')
+            
+            return redirect('login')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'register.html', context)
 
 
 def criar_usuario(request):
@@ -20,11 +41,11 @@ def criar_usuario(request):
         }
 
         if form.is_valid():
-            if User.objects.filter(matricula=form.cleaned_data['matricula']).exists():
+            if UserStandard.objects.filter(matricula=form.cleaned_data['matricula']).exists():
                 messages.error(request, 'Já existe um usuário com essa matrícula!')
                 return render(request, 'cadastrar.html', context)
             
-            elif User.objects.filter(email=form.cleaned_data['email']).exists():
+            elif UserStandard.objects.filter(email=form.cleaned_data['email']).exists():
                 messages.error(request, 'Já existe um usuário com esse email!')
                 return render(request, 'cadastrar.html', context)
             
@@ -43,7 +64,7 @@ def criar_usuario(request):
 
 
 def listar(request):
-    usuarios = User.objects.all()
+    usuarios = UserStandard.objects.all()
     # print(usuarios)
 
     context = {
@@ -64,7 +85,7 @@ def search(request):
             return redirect('listar_emprestimos')
 
     if search_type == 'usuarios':
-        results = User.objects.filter(
+        results = UserStandard.objects.filter(
             Q(nome__icontains=search_value) |
             Q(matricula__icontains=search_value) |
             Q(turma__icontains=search_value) |
@@ -104,11 +125,11 @@ def emprestimos(request):
         else:
             print(form.errors)
         
-        usuarios = User.objects.all()
+        usuarios = UserStandard.objects.all()
         
         return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': form})
     
-    usuarios = User.objects.all()
+    usuarios = UserStandard.objects.all()
     return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': EmpreForm()})
 
 
@@ -116,3 +137,30 @@ def listar_emprestimo(request):
     emprestimos = Emprestimo.objects.all()
     
     return render(request, 'listar_emprestimos.html', context={'emprestimos': emprestimos})
+
+
+def login_view(request):
+    form = AuthenticationForm(request)
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            auth.login(request, user)
+            messages.success(request, 'Login efetuado com sucesso!')
+            return redirect('first')
+      
+        messages.error(request, 'Usuário ou senha inválidos!')
+
+    context = {
+        'form': form
+    }
+    
+    return render(request, 'login.html', context)
+
+
+def logout_view(request):
+    auth.logout(request)
+    
+    return redirect('login')

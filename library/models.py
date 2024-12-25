@@ -5,16 +5,7 @@ from datetime import date
 
 # Create your models here.
 
-
-class Administrator(models.Model):
-    class Meta:
-        verbose_name_plural = 'administrators'
-    
-    usuario = models.CharField(max_length=20)
-    senha = models.CharField(max_length=8)
-
-
-class User(models.Model):
+class UserStandard(models.Model):
     class Meta:
         verbose_name_plural = 'users'
     
@@ -31,7 +22,7 @@ class User(models.Model):
 
 
 class Emprestimo(models.Model):
-    portador = models.ForeignKey(User, on_delete=models.CASCADE)
+    portador = models.ForeignKey(UserStandard, on_delete=models.CASCADE)
     livro = models.CharField(max_length=100)
     categoria = models.CharField(max_length=50, blank=True)
     data_emprestimo = models.DateField(default=date.today().strftime('%d/%m/%Y'))

@@ -10,8 +10,8 @@
     <title>Fazer cadastro</title>
 </head>
 <body>
-    <header class="site-header1">
-        <div class="container1">
+    <header class="cabeçalho">
+        <div class="meu-container">
             <h1>Biblioteca</h1>
             <nav>
                 <ul>
@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <div class="container1 form-container1">
+    <div class="meu-container meu-form">
         <h2>Registro de Cadastro</h2>
 
         {% include 'partials/_messages.html' %}
@@ -30,7 +30,7 @@
 
         <form action="{% url 'criar_usuario' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
             {% for field in form %}
-                <div class="form-group1">
+                <div class="meu-form-grupo">
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {% if field.name == 'turma' %}
                         <select id="turma" name="turma" multiple size="1">

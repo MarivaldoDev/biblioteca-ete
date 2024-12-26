@@ -76,7 +76,7 @@ DATABASES = {
         'NAME': 'library_db_o7ux',
         'USER': config('USER_DATABASE'),
         'PASSWORD': config('PASSWORD_DATABASE'),
-        'HOST': config('HOST_DATABASE'),
+        'HOST': config('DATABASE_HOST'),
         'PORT': '5432', 
     }
 }

@@ -14,9 +14,9 @@ SECRET_KEY = 'django-insecure-lw97dbu8=8x2uqsdc4nr%uyr!@xgopy-c@l!91_=0amlv&8e&-
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [
-    'https://3e89-2804-29b8-51a6-4541-199e-e156-69ac-ebd0.ngrok-free.app'  
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://3e89-2804-29b8-51a6-4541-199e-e156-69ac-ebd0.ngrok-free.app'  
+# ]
 
 
 
@@ -81,7 +81,7 @@ DATABASES = {
 CELERY_BEAT_SCHEDULE = {
     'checar-emprestimo-every-day': {
         'task': 'library.tasks.checar_emprestimo',
-        'schedule': crontab(hour=16, minute=39),  # Executa diariamente às 9h
+        'schedule': crontab(hour=9, minute=2),  # Executa diariamente às 9h
     },
 }
 
@@ -137,6 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_RESULT_BACKEND = 'django-db'
+
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

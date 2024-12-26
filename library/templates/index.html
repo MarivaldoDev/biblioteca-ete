@@ -19,10 +19,15 @@
     <aside>
         <nav class="menu-space">
             <ul>
+            {% if user.is_authenticated %}
                 <li><a href="{% url 'listar_emprestimos' %}">Empréstimos ativos</a></li>
-                <li><a href="#">Desenvolvedores</a></li>
                 <li><a href="{% url 'listar_usuarios' %}">Usuários cadastrados</a></li>
                 <li><a href="{% url 'emprestimos' %}">Fazer empréstimo</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Fazer Login</a></li>
+                <li><a href="{% url 'register' %}">Criar registro</a></li>
+            {% endif %}
             </ul>
         </nav>
     </aside>

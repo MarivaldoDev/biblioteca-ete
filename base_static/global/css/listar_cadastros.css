@@ -121,21 +121,19 @@ body {
     object-fit: cover;
 }
 
-.btn-view, .btn-edit, .btn-delete {
+.btn-edit, .btn-delete {
     padding: 8px 14px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
-    margin-right: 5px;
+    margin-right: 10px; /* Espaçamento entre os botões */
     transition: background-color 0.3s ease;
-    display: inline-block;
+    display: inline-flex; /* Deixa os botões na mesma linha */
+    align-items: center; /* Centraliza o texto verticalmente */
+    justify-content: center; /* Centraliza o texto horizontalmente */
     text-align: center;
-}
-
-.btn-view {
-    background-color: #28a745;
-    color: #fff;
+    text-decoration: none;
 }
 
 .btn-edit {
@@ -144,12 +142,9 @@ body {
 }
 
 .btn-delete {
+    margin-right: 0;
     background-color: #dc3545;
     color: #fff;
-}
-
-.btn-view:hover {
-    background-color: #218838;
 }
 
 .btn-edit:hover {
@@ -159,6 +154,7 @@ body {
 .btn-delete:hover {
     background-color: #c82333;
 }
+
 
 @media (max-width: 1024px) {
     .user-management {

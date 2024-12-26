@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserStandard, Emprestimo
-from .forms import UserForm, EmpreForm, RegisterForm
+from .forms import UserForm, EmpreForm, RegisterForm, RegisterUpdateForm
 from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -32,6 +33,26 @@ def register(request):
     return render(request, 'register.html', context)
 
 
+@login_required(login_url='login')
+def register_update(request):
+    form = RegisterUpdateForm(instance=request.user)
+
+    if request.method == 'POST':
+        form = RegisterUpdateForm(data=request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Informações atualizadas com sucesso!')
+            return redirect('first')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'register_update.html', context)
+
+
+@login_required(login_url='login')
 def criar_usuario(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
@@ -63,6 +84,38 @@ def criar_usuario(request):
     return render(request, 'cadastrar.html', context)
 
 
+@login_required(login_url='login')
+def update(request, id):
+    usuario = get_object_or_404(UserStandard, pk=id)
+    form = UserForm(instance=usuario)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=usuario)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Informações atualizadas com sucesso!')
+            return redirect('listar_usuarios')
+
+    context = {
+        'form': form,
+        'usuario': usuario
+    }
+
+    return render(request, 'update.html', context)
+
+
+@login_required(login_url='login')
+def excluir(request, id):
+    usuario = get_object_or_404(UserStandard, pk=id)
+    
+    usuario.delete()
+    messages.success(request, 'Usuário excluído com sucesso!')
+        
+    return redirect('first')
+
+
+@login_required(login_url='login')
 def listar(request):
     usuarios = UserStandard.objects.all()
     # print(usuarios)
@@ -72,6 +125,7 @@ def listar(request):
     }
 
     return render(request, 'listar_cadastros.html', context)
+
 
 
 def search(request):
@@ -113,7 +167,7 @@ def search(request):
     return render(request, template, context)
 
 
-
+@login_required(login_url='login')
 def emprestimos(request):
     if request.method == 'POST':
         form = EmpreForm(request.POST)
@@ -133,6 +187,7 @@ def emprestimos(request):
     return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': EmpreForm()})
 
 
+@login_required(login_url='login')
 def listar_emprestimo(request):
     emprestimos = Emprestimo.objects.all()
     
@@ -160,6 +215,7 @@ def login_view(request):
     return render(request, 'login.html', context)
 
 
+@login_required(login_url='login')
 def logout_view(request):
     auth.logout(request)
     

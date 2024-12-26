@@ -1,0 +1,30 @@
+{% for field in form %}
+                <div class="meu-form-grupo">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.name == 'turma' %}
+                        <select id="turma" name="turma" multiple size="1">
+                            <option value="1loga">1° LOG A</option>
+                            <option value="1logb">1° LOG B</option>
+                            <option value="2loga">2° LOG A</option>
+                            <option value="2logb">2° LOG B</option>
+                            <option value="3loga">3° LOG A</option>
+                            <option value="3logb">3° LOG B</option>
+                            <option value="1tdsa">1° TDS A</option>
+                            <option value="1tdsb">1° TDS B</option>
+                            <option value="2tdsa">2° TDS A</option>
+                            <option value="2tdsb">2° TDS B</option>
+                            <option value="3tdsa">3° TDS A</option>
+                            <option value="3tdsb">3° TDS B</option>  
+                        </select>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    {% if field.errors %}
+                        <ul class="error-list">
+                            {% for error in field.errors %}
+                                <li class="error">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}

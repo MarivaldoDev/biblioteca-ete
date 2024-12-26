@@ -74,10 +74,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'library_db_o7ux',
-        'USER': 'admin',
-        'PASSWORD': 'iTVbNBah89G7eDvXzLzmAKykDaGty4BR',
-        'HOST': 'dpg-ctmo4clds78s73bujj4g-a.oregon-postgres.render.com',  # Ou o endereço do servidor PostgreSQL
-        'PORT': '5432',  # Porta padrão do PostgreSQL
+        'USER': config('USER_DATABASE'),
+        'PASSWORD': config('PASSWORD_DATABASE'),
+        'HOST': config('HOST_DATABASE'),
+        'PORT': '5432', 
     }
 }
 

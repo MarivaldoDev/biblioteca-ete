@@ -78,8 +78,18 @@ DATABASES = {
         'PASSWORD': config('PASSWORD_DATABASE'),
         'HOST': config('DATABASE_HOST'),
         'PORT': '5432', 
+    },
+
+    'testes': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# development = False
+
+# if development == False:
+#    DATABASES['default'] = DATABASES['testes']
 
 
 CELERY_BEAT_SCHEDULE = {

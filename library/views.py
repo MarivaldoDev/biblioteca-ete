@@ -72,7 +72,7 @@ def criar_usuario(request):
             
             else:
                 form.save()
-                messages.success(request, f'Usuário {form.cleaned_data['nome']} cadastrado com sucesso!')
+                messages.success(request, f'Usuário cadastrado com sucesso!')
                 return redirect('first')
     
         return render(request, 'cadastrar.html', context)

@@ -72,8 +72,12 @@ WSGI_APPLICATION = 'ete.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'library_db_o7ux',
+        'USER': 'admin',
+        'PASSWORD': 'iTVbNBah89G7eDvXzLzmAKykDaGty4BR',
+        'HOST': 'dpg-ctmo4clds78s73bujj4g-a.oregon-postgres.render.com',  # Ou o endereço do servidor PostgreSQL
+        'PORT': '5432',  # Porta padrão do PostgreSQL
     }
 }
 

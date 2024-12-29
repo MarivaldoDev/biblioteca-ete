@@ -156,6 +156,53 @@ body {
 }
 
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.step-links {
+    display: flex;
+    gap: 10px;
+}
+
+.step-links a {
+    text-decoration: none;
+    color: #0056b3;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: 1px solid #0056b3;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.step-links a:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.step-links .current {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.step-links a:first-child {
+    margin-right: auto;
+}
+
+.step-links a:last-child {
+    margin-left: auto;
+}
+
+
 @media (max-width: 1024px) {
     .user-management {
         padding: 20px;
@@ -195,6 +242,16 @@ body {
     .btn-view, .btn-edit, .btn-delete {
         font-size: 12px;
         padding: 5px 8px;
+    }
+
+    .step-links {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .step-links a, .step-links .current {
+        font-size: 12px;
+        padding: 6px 10px;
     }
 }
 

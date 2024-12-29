@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserStandard, Emprestimo
 from .forms import UserForm, EmpreForm, RegisterForm, RegisterUpdateForm
@@ -120,8 +121,13 @@ def listar(request):
     usuarios = UserStandard.objects.all()
     # print(usuarios)
 
+    paginator = Paginator(usuarios, 10)  # Show 25 contacts per page.
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'usuarios': usuarios
+        'page_obj': page_obj
     }
 
     return render(request, 'listar_cadastros.html', context)

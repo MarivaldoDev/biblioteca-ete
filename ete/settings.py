@@ -3,6 +3,7 @@ from decouple import config
 from celery.schedules import crontab
 from django.contrib.messages import constants as message_constants
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = [
@@ -89,13 +90,14 @@ DATABASES = {
 # development = False
 
 # if development == False:
+#    DEBUG = True
 #    DATABASES['default'] = DATABASES['testes']
 
 
 CELERY_BEAT_SCHEDULE = {
     'checar-emprestimo-every-day': {
         'task': 'library.tasks.checar_emprestimo',
-        'schedule': crontab(hour=9, minute=2),  # Executa diariamente às 9h
+        'schedule': crontab(hour=13, minute=15),  # Executa diariamente às 9h
     },
 }
 
@@ -148,7 +150,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
+CELERY_BROKER_URL = 'amqp://guest@localhost//'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_RESULT_BACKEND = 'django-db'
 

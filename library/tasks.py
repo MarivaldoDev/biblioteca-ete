@@ -1,5 +1,6 @@
 from celery import shared_task
 from django.core.mail import send_mail
+from time import sleep
 from .models import Emprestimo
 
 
@@ -11,8 +12,8 @@ def checar_emprestimo():
     #     if emprestimo.fim_emprestimo:
     #         enviar_email(emprestimo.portador, emprestimo.livro, emprestimo.portador.email)
     #         print('\033]1;33m E-mail enviado!\033[m')
-    
-    return 'Tarefa concluída!'
+    return 'E-mails enviados!'
+
 
 def enviar_email(portador, livro, email):
     send_mail(

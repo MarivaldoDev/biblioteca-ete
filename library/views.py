@@ -166,8 +166,13 @@ def search(request):
     else:
         return HttpResponse("Tipo de busca inválido", status=400)
 
+    paginator = Paginator(results, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        context_key: results
+        context_key: results,
+        'page_obj': page_obj
     }
 
     return render(request, template, context)

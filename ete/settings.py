@@ -2,6 +2,8 @@ from pathlib import Path
 from decouple import config
 from celery.schedules import crontab
 from django.contrib.messages import constants as message_constants
+from whitenoise import WhiteNoise
+from django.core.wsgi import get_wsgi_application
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -146,6 +148,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+application = get_wsgi_application()
+application = WhiteNoise(application, root=MEDIA_ROOT, prefix=MEDIA_URL)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserStandard, Emprestimo
 from .forms import UserForm, EmpreForm, RegisterForm, RegisterUpdateForm
 from django.contrib import messages, auth
+from .tasks import enviar_email
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
@@ -201,6 +202,12 @@ def emprestimos(request):
 @login_required(login_url='login')
 def listar_emprestimo(request):
     emprestimos = Emprestimo.objects.all()
+
+    for emprestimo in emprestimos:
+        if emprestimo.fim_emprestimo:
+            enviar_email.delay(emprestimo.portador.nome, emprestimo.livro, emprestimo.portador.email)
+            print('\033]1;33m E-mail enviado!\033[m')
+
     
     return render(request, 'listar_emprestimos.html', context={'emprestimos': emprestimos})
 

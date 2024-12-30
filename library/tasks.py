@@ -1,20 +1,8 @@
 from celery import shared_task
 from django.core.mail import send_mail
-from time import sleep
-# from .models import Emprestimo
 
 
 @shared_task
-def checar_emprestimo():
-    # emprestimos = Emprestimo.objects.all()
-
-    # for emprestimo in emprestimos:
-    #     if emprestimo.fim_emprestimo:
-    #         enviar_email(emprestimo.portador, emprestimo.livro, emprestimo.portador.email)
-    #         print('\033]1;33m E-mail enviado!\033[m')
-    return 'E-mails enviados!'
-
-
 def enviar_email(portador, livro, email):
     send_mail(
         subject='Hora de devolver!', 
@@ -22,7 +10,5 @@ def enviar_email(portador, livro, email):
         from_email='testesdepython2@gmail.com',
         recipient_list=[email]
     )
-
-
-if __name__ == "__main__":
-    checar_emprestimo()
+    
+    return None

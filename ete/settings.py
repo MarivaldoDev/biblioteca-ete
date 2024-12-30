@@ -94,12 +94,12 @@ DATABASES = {
 #    DATABASES['default'] = DATABASES['testes']
 
 
-CELERY_BEAT_SCHEDULE = {
-    'checar-emprestimo-every-day': {
-        'task': 'library.tasks.checar_emprestimo',
-        'schedule': crontab(hour=14, minute=5),  # Executa diariamente às 9h
-    },
-}
+# CELERY_BEAT_SCHEDULE = {
+#     'checar-emprestimo-every-day': {
+#         'task': 'library.tasks.checar_emprestimo',
+#         'schedule': crontab(hour=14, minute=5),  # Executa diariamente às 9h
+#     },
+# }
 
 
 # Password validation
@@ -153,7 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 
 if DEBUG:

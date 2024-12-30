@@ -2,9 +2,6 @@ from pathlib import Path
 from decouple import config
 from celery.schedules import crontab
 from django.contrib.messages import constants as message_constants
-from whitenoise import WhiteNoise
-from django.core.wsgi import get_wsgi_application
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,17 +87,17 @@ DATABASES = {
     }
 }
 
-# development = False
+development = False
 
-# if development == False:
-#    DEBUG = True
-#    DATABASES['default'] = DATABASES['testes']
+if development == False:
+   DEBUG = True
+   DATABASES['default'] = DATABASES['testes']
 
 
 CELERY_BEAT_SCHEDULE = {
     'checar-emprestimo-every-day': {
         'task': 'library.tasks.checar_emprestimo',
-        'schedule': crontab(hour=13, minute=15),  # Executa diariamente às 9h
+        'schedule': crontab(hour=14, minute=5),  # Executa diariamente às 9h
     },
 }
 
@@ -148,17 +145,15 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-application = get_wsgi_application()
-application = WhiteNoise(application, root=MEDIA_ROOT, prefix=MEDIA_URL)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = 'amqp://guest@localhost//'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 
 
 if DEBUG:

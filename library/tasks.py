@@ -1,7 +1,7 @@
 from celery import shared_task
 from django.core.mail import send_mail
 from time import sleep
-from .models import Emprestimo
+# from .models import Emprestimo
 
 
 @shared_task

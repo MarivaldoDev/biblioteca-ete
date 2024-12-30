@@ -87,11 +87,11 @@ DATABASES = {
     }
 }
 
-development = False
+# development = False
 
-if development == False:
-   DEBUG = True
-   DATABASES['default'] = DATABASES['testes']
+# if development == False:
+#    DEBUG = True
+#    DATABASES['default'] = DATABASES['testes']
 
 
 CELERY_BEAT_SCHEDULE = {

@@ -1,6 +1,5 @@
 from pathlib import Path
 from decouple import config
-from celery.schedules import crontab
 from django.contrib.messages import constants as message_constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'library.apps.LibraryConfig',
 
-    'django_celery_results',
     'django_celery_beat'
 ]
 
@@ -94,14 +92,6 @@ DATABASES = {
 #    DATABASES['default'] = DATABASES['testes']
 
 
-# CELERY_BEAT_SCHEDULE = {
-#     'checar-emprestimo-every-day': {
-#         'task': 'library.tasks.checar_emprestimo',
-#         'schedule': crontab(hour=14, minute=5),  # Executa diariamente às 9h
-#     },
-# }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -153,7 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 

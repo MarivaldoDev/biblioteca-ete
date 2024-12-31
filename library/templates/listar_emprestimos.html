@@ -35,7 +35,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for emprestimo in emprestimos %}
+            {% if not page_obj %}
+                <tr>
+                    <td colspan="6">Nenhum empréstimo encontrado.</td>
+                </tr>
+            {% endif %}
+                {% for emprestimo in page_obj %}
                     <tr>
                         <td>{{ emprestimo.portador }}</td>
                         <td>{{ emprestimo.livro }}</td>
@@ -55,7 +60,21 @@
         </table>
         
         <nav class="pagination">
-            <!-- Paginação -->
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1&q={{ request.GET.q.strip }}&type={{ request.GET.type|default:'usuarios' }}">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}&type={{ request.GET.type|default:'usuarios' }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q.strip }}&type={{ request.GET.type|default:'usuarios' }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q.strip }}&type={{ request.GET.type|default:'usuarios' }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </nav>
     </div>
 

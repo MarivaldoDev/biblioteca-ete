@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserStandard, Emprestimo
 from .forms import UserForm, EmpreForm, RegisterForm, RegisterUpdateForm
 from django.contrib import messages, auth
-from .tasks import enviar_email
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 
@@ -120,7 +120,7 @@ def excluir(request, id):
 @login_required(login_url='login')
 def listar(request):
     usuarios = UserStandard.objects.all()
-    # print(usuarios)
+    usuarios = usuarios.order_by('-data_criacao')
 
     paginator = Paginator(usuarios, 10)  # Show 25 contacts per page.
 
@@ -151,7 +151,8 @@ def search(request):
             Q(matricula__icontains=search_value) |
             Q(turma__icontains=search_value) |
             Q(email__icontains=search_value)
-        )
+        ).order_by('id')
+
         template = 'listar_cadastros.html'
         context_key = 'usuarios'
 
@@ -160,7 +161,8 @@ def search(request):
             Q(portador__nome__icontains=search_value) |
             Q(livro__icontains=search_value) |
             Q(categoria__icontains=search_value)
-        )
+        ).order_by('id')
+
         template = 'listar_emprestimos.html'
         context_key = 'emprestimos'
 
@@ -186,30 +188,30 @@ def emprestimos(request):
 
         if form.is_valid():
             form.save()
-            print('foi')
-            return redirect('emprestimos')
+            messages.success(request, 'Empréstimo realizado com sucesso!')
+            return redirect('first')
         else:
-            print(form.errors)
+            messages.error(request, 'Erro ao realizar empréstimo!')     
         
-        usuarios = UserStandard.objects.all()
-        
+        usuarios = UserStandard.objects.all() 
         return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': form})
     
     usuarios = UserStandard.objects.all()
+    
     return render(request, 'emprestimos.html', context={'usuarios': usuarios, 'form': EmpreForm()})
 
 
 @login_required(login_url='login')
 def listar_emprestimo(request):
-    emprestimos = Emprestimo.objects.all()
-
-    for emprestimo in emprestimos:
-        if emprestimo.fim_emprestimo:
-            enviar_email.delay(emprestimo.portador.nome, emprestimo.livro, emprestimo.portador.email)
-            print('\033]1;33m E-mail enviado!\033[m')
+    emprestimos_ativos = Emprestimo.objects.filter(data_devolucao__gte=timezone.now())
+    emprestimos_ativos = emprestimos_ativos.order_by('data_devolucao')
+ 
+    paginator = Paginator(emprestimos_ativos, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     
-    return render(request, 'listar_emprestimos.html', context={'emprestimos': emprestimos})
+    return render(request, 'listar_emprestimos.html', context={'page_obj': page_obj})
 
 
 def login_view(request):

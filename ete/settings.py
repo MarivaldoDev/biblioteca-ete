@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'ete.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'library_db_o7ux',
+        'NAME': 'new_database_3r3g',
         'USER': config('USER_DATABASE'),
         'PASSWORD': config('PASSWORD_DATABASE'),
         'HOST': config('DATABASE_HOST'),
@@ -85,11 +85,11 @@ DATABASES = {
     }
 }
 
-# development = False
+development = False
 
-# if development == False:
-#    DEBUG = True
-#    DATABASES['default'] = DATABASES['testes']
+if development == False:
+   DEBUG = True
+   DATABASES['default'] = DATABASES['testes']
 
 
 # Password validation

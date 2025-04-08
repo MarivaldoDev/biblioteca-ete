@@ -85,7 +85,7 @@ DATABASES = {
     }
 }
 
-development = False
+development = True
 
 if development == False:
    DEBUG = True

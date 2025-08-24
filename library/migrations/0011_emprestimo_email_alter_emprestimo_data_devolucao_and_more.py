@@ -6,29 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0010_administrator_emprestimo_user_delete_administrador_and_more'),
+        ("library", "0010_administrator_emprestimo_user_delete_administrador_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='emprestimo',
-            name='email',
-            field=models.EmailField(default='teste@gmail.com', max_length=150),
+            model_name="emprestimo",
+            name="email",
+            field=models.EmailField(default="teste@gmail.com", max_length=150),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='emprestimo',
-            name='data_devolucao',
-            field=models.DateField(default='30/06/2024'),
+            model_name="emprestimo",
+            name="data_devolucao",
+            field=models.DateField(default="30/06/2024"),
         ),
         migrations.AlterField(
-            model_name='emprestimo',
-            name='data_emprestimo',
-            field=models.DateField(default='30/06/2024'),
+            model_name="emprestimo",
+            name="data_emprestimo",
+            field=models.DateField(default="30/06/2024"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='data_criacao',
-            field=models.DateField(default='30/06/2024'),
+            model_name="user",
+            name="data_criacao",
+            field=models.DateField(default="30/06/2024"),
         ),
     ]

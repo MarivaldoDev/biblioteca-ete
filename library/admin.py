@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import UserStandard, Emprestimo
+
+from .models import Emprestimo, UserStandard
 
 # Register your models here.
 admin.site.register(UserStandard)

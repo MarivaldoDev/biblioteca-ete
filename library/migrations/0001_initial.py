@@ -7,20 +7,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Perfil',
+            name="Perfil",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=100)),
-                ('matricula', models.CharField(max_length=7)),
-                ('curso', models.CharField(max_length=30)),
-                ('turma', models.CharField(max_length=10)),
-                ('data_criacao', models.DateField()),
-                ('imagem', models.ImageField(blank=True, upload_to='imagens/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=100)),
+                ("matricula", models.CharField(max_length=7)),
+                ("curso", models.CharField(max_length=30)),
+                ("turma", models.CharField(max_length=10)),
+                ("data_criacao", models.DateField()),
+                ("imagem", models.ImageField(blank=True, upload_to="imagens/")),
             ],
         ),
     ]

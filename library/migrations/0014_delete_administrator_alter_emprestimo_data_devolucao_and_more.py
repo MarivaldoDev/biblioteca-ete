@@ -6,21 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0013_alter_emprestimo_data_devolucao_and_more'),
+        ("library", "0013_alter_emprestimo_data_devolucao_and_more"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Administrator',
+            name="Administrator",
         ),
         migrations.AlterField(
-            model_name='emprestimo',
-            name='data_devolucao',
-            field=models.DateField(default='24/12/2024'),
+            model_name="emprestimo",
+            name="data_devolucao",
+            field=models.DateField(default="24/12/2024"),
         ),
         migrations.AlterField(
-            model_name='emprestimo',
-            name='data_emprestimo',
-            field=models.DateField(default='24/12/2024'),
+            model_name="emprestimo",
+            name="data_emprestimo",
+            field=models.DateField(default="24/12/2024"),
         ),
     ]

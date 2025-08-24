@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0002_alter_perfil_data_criacao'),
+        ("library", "0002_alter_perfil_data_criacao"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='perfil',
-            name='data_criacao',
-            field=models.DateField(default='25/05/2024'),
+            model_name="perfil",
+            name="data_criacao",
+            field=models.DateField(default="25/05/2024"),
         ),
     ]

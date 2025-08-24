@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0007_alter_usuario_data_criacao_alter_usuario_imagem'),
+        ("library", "0007_alter_usuario_data_criacao_alter_usuario_imagem"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='usuario',
-            name='data_criacao',
-            field=models.DateField(default='09/06/2024'),
+            model_name="usuario",
+            name="data_criacao",
+            field=models.DateField(default="09/06/2024"),
         ),
     ]

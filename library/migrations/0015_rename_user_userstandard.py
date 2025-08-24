@@ -6,12 +6,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0014_delete_administrator_alter_emprestimo_data_devolucao_and_more'),
+        (
+            "library",
+            "0014_delete_administrator_alter_emprestimo_data_devolucao_and_more",
+        ),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='User',
-            new_name='UserStandard',
+            old_name="User",
+            new_name="UserStandard",
         ),
     ]

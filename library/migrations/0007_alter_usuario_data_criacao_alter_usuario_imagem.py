@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0006_administrador_rename_perfil_usuario'),
+        ("library", "0006_administrador_rename_perfil_usuario"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='usuario',
-            name='data_criacao',
-            field=models.DateField(default='06/06/2024'),
+            model_name="usuario",
+            name="data_criacao",
+            field=models.DateField(default="06/06/2024"),
         ),
         migrations.AlterField(
-            model_name='usuario',
-            name='imagem',
-            field=models.ImageField(blank=True, upload_to='imagem_cadastro/%Y/%m/'),
+            model_name="usuario",
+            name="imagem",
+            field=models.ImageField(blank=True, upload_to="imagem_cadastro/%Y/%m/"),
         ),
     ]

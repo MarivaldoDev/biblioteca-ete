@@ -65,12 +65,12 @@ Esta aplicação foi desenvolvida especialmente para atender às necessidades da
 
 3. Acesse a aplicação em [http://localhost:8000](http://localhost:8000).
 
-
+<br>
 
 # Pré - Visualização
 ![Image](https://github.com/user-attachments/assets/d57a7590-eea4-4eb1-ae1b-330ee4d6ae7d)
 
----
+
 
 # Contato
 Autor: Marivaldo Pedro

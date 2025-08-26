@@ -25,16 +25,19 @@ Esta aplicação foi desenvolvida especialmente para atender às necessidades da
    ```bash
    git clone https://github.com/MarivaldoDev/biblioteca-ete.git
    cd biblioteca-ete
+   ```
 
 2. Crie e ative um ambiente virtual:
     ```bash
     python -m venv venv
     source venv/bin/activate  # Linux/macOS
     venv\Scripts\activate     # Windows
+    ```
 
 3. Instale as dependências:
     ```bash
     pip install -r requirements.txt
+    ```
 
 4. Configure o .env com suas variáveis (Redis, banco de dados e etc.).
 
@@ -42,13 +45,14 @@ Esta aplicação foi desenvolvida especialmente para atender às necessidades da
     ```bash
     python3 manage.py migrate # Linux/macOS
     python manage.py migrate # Windows
+    ```
 
 6. Inicie o servidor:
     ```bash
     python3 manage.py runserver # Linux/macOS
     python manage.py runserver # Windows
+    ```
 
----
 
 ## 🐳 Executando com Docker
 
@@ -61,7 +65,7 @@ Esta aplicação foi desenvolvida especialmente para atender às necessidades da
 
 3. Acesse a aplicação em [http://localhost:8000](http://localhost:8000).
 
----
+
 
 # Pré - Visualização
 ![Image](https://github.com/user-attachments/assets/d57a7590-eea4-4eb1-ae1b-330ee4d6ae7d)

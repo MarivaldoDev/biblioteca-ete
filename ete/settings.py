@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-lw97dbu8=8x2uqsdc4nr%uyr!@xgopy-c@l!91_=0amlv&8e&-"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     "library.apps.LibraryConfig",
     "django_celery_beat",
+    "django_celery_results",
 ]
 
 MIDDLEWARE = [
@@ -68,21 +69,12 @@ WSGI_APPLICATION = "ete.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'new_database_3r3g',
-    #     'USER': config('USER_DATABASE'),
-    #     'PASSWORD': config('PASSWORD_DATABASE'),
-    #     'HOST': config('DATABASE_HOST'),
-    #     'PORT': '5432',
+    # 'default':{
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
 
-    'default':{
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-
-    'testes': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
@@ -146,9 +138,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_BROKER_URL = "redis://redis/0"
 CELERY_TIMEZONE = "America/Sao_Paulo"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "django-db"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 
